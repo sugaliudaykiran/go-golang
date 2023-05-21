@@ -4,7 +4,7 @@ import ("fmt")
 func main(){
     ar := [4]int{1, 2,3 , 4}
     fmt.Printf("Values of ar: %v \n",ar)
-    
+    // myslice := []string{}  creating empty slice
     // myslice := []int{11, 21, 32, 31}
     // myslice := ar[1:3]  // Not including the end item of it..
     // myslice := ar[:3]
