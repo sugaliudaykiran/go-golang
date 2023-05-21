@@ -1,0 +1,2 @@
+go mod init mod_name/app_name/project_name
+# which creates a index file an "mod file" which is an lock file which contains all package/dependencies of the inventory.
