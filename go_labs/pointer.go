@@ -24,7 +24,7 @@ func main() {
 	zero2(&x)
 	fmt.Printf("x: %v \n", x)
 
-	yptr := new(int)
+	yptr := new(int) // Here we were creating a memory address to store a value of integer type
 	one(yptr)
 	fmt.Println(*yptr) // garbage collected programming language which means memory is cleaned up automatically when nothing refers to it anymore.
 
