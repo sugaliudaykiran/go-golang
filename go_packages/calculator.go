@@ -1,4 +1,4 @@
-package calculator
+package go_packages
 
 // creating add function
 func Adding(x, y int)int{

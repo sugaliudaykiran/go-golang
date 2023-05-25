@@ -3,7 +3,7 @@ import (
     "fmt"
     "math"
     "strings"
-    "go_packages/calculator"
+    "week1/go_packages/calculator"
 )
 
 func main(){
