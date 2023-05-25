@@ -1,5 +1,8 @@
 package go_packages
 
+// declaring a variable in the cal, can be only used in go_packages
+var name string = "uday"
+
 // creating add function
 func Adding(x, y int)int{
 	return x+y
