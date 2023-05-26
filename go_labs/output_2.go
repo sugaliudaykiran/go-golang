@@ -30,4 +30,18 @@ func main(){
     var f1, f2 = 3.14, 4.02838
     fmt.Printf("value of f1: %e and value of f2: %f \n",f1,f2)
     fmt.Printf("value of f1: %.4f and value of f2: %.2f \n",f1,f2)
+
+    /*
+
+        The fmt.Sprintf() function in Go language formats according to a format specifier
+         and returns the resulting string.
+         Moreover, this function is defined under the fmt package.
+
+
+        func Sprintf(format string, a ...interface{}) string
+Parameters: This function accepts two parameters which are illustrated below:
+
+    format string: This includes some varbs along with some strings.
+    a …interface{}: This is the specified constant variables.
+    */ 
 }
