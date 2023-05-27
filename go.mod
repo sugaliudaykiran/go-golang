@@ -1,4 +1,3 @@
-// module example.com/packages
+module example.com/packages
 
-//  go 1.20
-
+go 1.20
