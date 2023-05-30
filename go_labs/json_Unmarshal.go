@@ -1,6 +1,6 @@
 package main
 import (
-    "encoding/json"
+    "encoding/json" // Unmarshal([]byte(json_var), &var) ->decoding
     "fmt"
 )
 
@@ -22,6 +22,11 @@ type Birds struct{
     Dimensions Dimension
 }
 
+// JSON Struct Tags - Custom Field Names
+type BirdC struct{
+    Species string `json:"birdType"`
+    Description string `json:"what it does"`
+}
 
 func main(){
     
@@ -85,5 +90,61 @@ func main(){
     json.Unmarshal([]byte(floatJson), &y)
     json.Unmarshal([]byte(stringJson), &z)
     
-    fmt.Printf(" \n\n %v: %T \n %v: %T \n %v: %T",x,x,y,y,z,z)
+    fmt.Printf(" \n\n %v: %T \n %v: %T \n %v: %T \n\n",x,x,y,y,z,z)
+    
+    // Decoding JSON to Maps - Unstructured Data
+// If you don’t know the structure of your JSON properties beforehand, you cannot use structs to unmarshal your data.
+    
+    Json4:=`{
+        "birds": {
+            "pigeon":"likes to perch on rocks",
+            "eagle":"bird of prey"
+        },
+        "animals": "none"
+    }`
+    // no struct we can build to represent the above data 
+    // we create a map of strings to empty interfaces:
+    // var any interface{}  (or) use the "interface{}"
+    var animalsMap map[string]interface{}
+    json.Unmarshal([]byte(Json4), &animalsMap)
+    // The object stored in the "birds" key is also stored as a map[string]any type, and its type is asserted from
+    // the `any` type
+    birdMap:=animalsMap["birds"].(map[string]interface{}) // "type assertion" of birdMap
+    // fmt.Printf("birdMap: %+v \n",birdMap)
+    for mapKey,mapVal := range birdMap{
+        fmt.Printf("%v: %v \n", mapKey, mapVal)
+    }
+    
+    // JSON Struct Tags - Custom Field Names
+    Json5:=`{
+        "birdType": "pigeon",
+        "what it does": "likes to perch on rocks"
+    }`
+    
+    var customBird BirdC 
+    errC := json.Unmarshal([]byte(Json5), &customBird)
+    if errC==nil{
+        fmt.Println("custom bird: ",customBird)
+    }
+    
+    
+    // Validating the JSON data 
+    checkJson:=`{
+        "birds": {
+            "pigeon":"likes to perch on rocks",
+            "eagle":"bird of prey"
+    `
+    if !json.Valid([]byte(checkJson)){ // using json.Valid() function.
+        fmt.Println("Invalid JSON format", checkJson)
+        return
+    }
+    
+    var birdJson4 map[string]interface{}
+    errJson4 := json.Unmarshal([]byte(checkJson), &birdJson4)
+    
+    if errJson4==nil{
+        fmt.Println("Hello")
+        fmt.Printf("%+v \n", birdJson4)
+    }
+
 }
